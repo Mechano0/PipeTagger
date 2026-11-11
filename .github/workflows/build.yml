@@ -1,0 +1,33 @@
+name: Build
+
+# Builds the add-in for Revit 2021-2027 on a clean GitHub machine.
+# The uploaded "PipeTagger-dist" artifact is what gets code-signed (SignPath) for releases.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Build all Revit versions
+        shell: pwsh
+        run: ./build.ps1
+
+      - name: Upload packages
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: PipeTagger-dist
+          path: dist/
+          if-no-files-found: error
