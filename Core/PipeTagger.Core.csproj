@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    CORE = all the tagging logic + dialog. Hot-reloadable: Revit does NOT need a restart.
+    Quick edit loop:  dotnet build Core -p:RevitVersion=2026
+    Then in Revit click "Reload" (or just click the Tag button again).
+  -->
+  <PropertyGroup>
+    <AssemblyName>PipeTagger.Core</AssemblyName>
+    <!-- After build, copy Core into that Revit's add-in folder (only if that Revit is installed).
+         Core is loaded from memory, so the file is never locked while Revit is open. -->
+    <DeployCore Condition="'$(DeployCore)' == ''">true</DeployCore>
+  </PropertyGroup>
+
+  <Target Name="DeployCore" AfterTargets="Build" Condition="'$(DeployCore)' == 'true' And '$(RevitInstalled)' == 'true'">
+    <Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).pdb"
+          DestinationFolder="$(AddinDir)\PipeTagger\Core" />
+    <Message Importance="high" Text="Core installed for Revit $(RevitVersion) -> click Reload in Revit" />
+  </Target>
+
+</Project>

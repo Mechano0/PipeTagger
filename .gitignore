@@ -1,0 +1,10 @@
+# Build output (rebuilt by build.ps1 / CI)
+bin/
+obj/
+dist/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo

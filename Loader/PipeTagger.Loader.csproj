@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    LOADER = the small DLL Revit loads at startup (ribbon buttons + hot reload).
+    It rarely changes and is locked while Revit runs, so install it with install.ps1
+    while Revit is closed.
+  -->
+  <PropertyGroup>
+    <AssemblyName>PipeTagger.Loader</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="PipeTagger.addin" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

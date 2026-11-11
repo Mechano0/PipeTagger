@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Pipe Tagger</Name>
+    <!-- Path is relative to this .addin file. The Loader hot-loads PipeTagger\Core\PipeTagger.Core.dll -->
+    <Assembly>PipeTagger\PipeTagger.Loader.dll</Assembly>
+    <AddInId>6E2B8C1A-4F3D-4B7E-9A51-2D7C0F8E3A91</AddInId>
+    <FullClassName>PipeTagger.App</FullClassName>
+    <VendorId>MECH</VendorId>
+    <VendorDescription>Mechano</VendorDescription>
+  </AddIn>
+</RevitAddIns>
